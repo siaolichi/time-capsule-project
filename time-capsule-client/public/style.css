@@ -1,0 +1,35 @@
+.vertical-center {
+	margin: 0;
+	position: absolute;
+	top: 50%;
+	width: 100%;
+	-ms-transform: translateY(-50%);
+	transform: translateY(-50%);
+	text-align: center;
+}
+.capsule-left-component {
+	width: 150px;
+	height: 100px;
+	background-color: rgba(10, 0, 151, 0.8);
+	border-radius: 50px 0 0 50px;
+	color: aliceblue;
+	display: inline-block;
+	text-align: center;
+	vertical-align: middle;
+	position: relative;
+	margin: 0px;
+	margin-right: -4px;
+}
+.capsule-right-component {
+	width: 150px;
+	height: 100px;
+	background-color: rgba(243, 9, 9, 0.8);
+	border-radius: 0 50px 50px 0;
+	color: aliceblue;
+	display: inline-block;
+	align-content: center;
+	text-align: center;
+	vertical-align: middle;
+	position: relative;
+	margin: 0px;
+}

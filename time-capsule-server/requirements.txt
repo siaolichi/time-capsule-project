@@ -1,0 +1,9 @@
+nltk 
+h5py 
+flask_cors 
+Flask  
+gunicorn  
+psycopg2-binary
+tensorflow==1.8.0
+gspread
+oauth2client
