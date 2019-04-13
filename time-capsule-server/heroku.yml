@@ -1,5 +1,0 @@
-build:
-    docker:
-        web: Dockerfile
-run:
-    web: gunicorn --workers=4 -b 0.0.0.0:$PORT wsgi:app

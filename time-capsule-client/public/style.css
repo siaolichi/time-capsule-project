@@ -1,3 +1,7 @@
+@font-face {
+	font-family: chogokubosogothic;
+	src: url('chogokubosogothic_5.ttf');
+}
 .vertical-center {
 	margin: 0;
 	position: absolute;

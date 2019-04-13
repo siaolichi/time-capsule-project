@@ -85,7 +85,8 @@ export default {
       // 2. create an locate the camera
       vm.camera = new THREE.PerspectiveCamera(
         30,
-        window.innerWidth / window.innerHeight,
+        document.getElementById("bg-3d").clientWidth /
+          document.getElementById("bg-3d").clientHeight,
         1,
         1000
       );
@@ -93,80 +94,78 @@ export default {
 
       //3. create and locate the objects on the scene
 
-      new MTLLoader()
+      // new MTLLoader().setPath("./").load("capsule.mtl", async materials => {
+      // await materials.preload();
+      new OBJLoader()
+        // .setMaterials(materials)
         .setPath("./")
-        .load("Hibernation_Capsule.mtl", async materials => {
-          await materials.preload();
-          new OBJLoader()
-            .setMaterials(materials)
-            .setPath("./")
-            .load("/Hibernation Capsule.obj", obj => {
-              obj.scale.multiplyScalar(0.05);
-              obj.name = "capsule1";
-              obj.position.set(-50, 0, 0);
-              vm.object = obj;
-              vm.scene.add(obj);
-            });
+        .load("capsule.obj", obj => {
+          obj.scale.multiplyScalar(0.15);
+          obj.name = "capsule1";
+          obj.position.set(-50, 0, 0);
+          vm.object = obj;
+          vm.scene.add(obj);
         });
-      new MTLLoader().setPath("./").load("capsule.mtl", async materials => {
-        await materials.preload();
-        new OBJLoader()
-          .setMaterials(materials)
-          .setPath("./")
-          .load("/capsule.obj", obj => {
-            obj.scale.multiplyScalar(500);
-            obj.rotation.y = 2;
-            obj.name = "capsule2";
-            vm.object2 = obj;
-            vm.scene.add(obj);
-          });
-      });
+      // });
+      // new MTLLoader().setPath("./").load("capsule.mtl", async materials => {
+      // await materials.preload();
+      new OBJLoader()
+        // .setMaterials(materials)
+        .setPath("./")
+        .load("capsule.obj", obj => {
+          obj.scale.multiplyScalar(0.15);
+          obj.rotation.y = 2;
+          obj.name = "capsule2";
+          vm.object2 = obj;
+          vm.scene.add(obj);
+        });
+      // });
 
-      new MTLLoader().setPath("./").load("capsule.mtl", async materials => {
-        await materials.preload();
-        new OBJLoader()
-          .setMaterials(materials)
-          .setPath("./")
-          .load("/capsule.obj", obj => {
-            obj.scale.multiplyScalar(500);
-            obj.position.set(50, 0, 0);
-            obj.name = "capsule3";
-            obj.rotation.y = 1;
-            vm.object3 = obj;
-            vm.scene.add(obj);
-          });
-      });
+      // new MTLLoader().setPath("./").load("capsule.mtl", async materials => {
+      // await materials.preload();
+      new OBJLoader()
+        // .setMaterials(materials)
+        .setPath("./")
+        .load("capsule.obj", obj => {
+          obj.scale.multiplyScalar(0.15);
+          obj.position.set(50, 0, 0);
+          obj.name = "capsule3";
+          obj.rotation.y = 1;
+          vm.object3 = obj;
+          vm.scene.add(obj);
+        });
+      // });
       var loader = new THREE.FontLoader();
       loader.load(
         "https://raw.githubusercontent.com/mrdoob/three.js/master/examples/fonts/helvetiker_regular.typeface.json",
         function(font) {
-          let geometry = new THREE.TextGeometry("July 18th 2018", {
+          let geometry = new THREE.TextGeometry("Graduation - July 18th 2018", {
             font: font,
             size: 1.5,
             height: 0.2
           });
           let material = new THREE.MeshBasicMaterial({ color: 0x000000 });
           let text1 = new THREE.Mesh(geometry, material);
-          text1.position.set(-46, 0, 50);
-          text1.name = "July 18th 2018";
+          text1.position.set(-51, 0, 50);
+          text1.name = "Graduation";
           vm.scene.add(text1);
-          geometry = new THREE.TextGeometry("Dec 24th 2018", {
+          geometry = new THREE.TextGeometry("Birthday - Jan 12nd 2019", {
             font: font,
             size: 1.5,
             height: 0.2
           });
           let text2 = new THREE.Mesh(geometry, material);
-          text2.position.set(-8, 0, 50);
-          text2.name = "Dec 24th 2018";
+          text2.position.set(-12, 0, 50);
+          text2.name = "Birthday";
           vm.scene.add(text2);
-          geometry = new THREE.TextGeometry("Jan 12nd 2019", {
+          geometry = new THREE.TextGeometry("One day in the future", {
             font: font,
             size: 1.5,
             height: 0.2
           });
           let text3 = new THREE.Mesh(geometry, material);
-          text3.position.set(30, 0, 50);
-          text3.name = "Jan 12nd 2019";
+          text3.position.set(29, 0, 50);
+          text3.name = "future";
           vm.scene.add(text3);
         }
       );
@@ -175,13 +174,21 @@ export default {
       light1.position.set(1000, 1000, 1000);
       vm.scene.add(light1);
 
-      let light2 = new THREE.HemisphereLight(0x99ff99, 0x9999ff);
-      vm.scene.add(light2);
+      // let light2 = new THREE.HemisphereLight(0x99ff99, 0x9999ff);
+      // vm.scene.add(light2);
+      // var light3 = new THREE.PointLight(0x0000ff, 1, 100);
+      // light3.position.set(50, 50, 50);
+      // vm.scene.add(light3);
 
+      var light4 = new THREE.AmbientLight(0x404040); // soft white light
+      vm.scene.add(light4);
       // 4. create the renderer
 
       vm.renderer = new THREE.WebGLRenderer();
-      vm.renderer.setSize(window.innerWidth, window.innerHeight);
+      vm.renderer.setSize(
+        document.getElementById("bg-3d").clientWidth,
+        document.getElementById("bg-3d").clientHeight
+      );
       document.getElementById("bg-3d").appendChild(vm.renderer.domElement);
     },
     mainLoop: function() {
@@ -202,9 +209,14 @@ export default {
     window.addEventListener(
       "resize",
       function() {
-        vm.camera.aspect = window.innerWidth / window.innerHeight;
+        vm.camera.aspect =
+          document.getElementById("bg-3d").clientWidth /
+          document.getElementById("bg-3d").clientHeight;
         vm.camera.updateProjectionMatrix();
-        vm.renderer.setSize(window.innerWidth, window.innerHeight);
+        vm.renderer.setSize(
+          document.getElementById("bg-3d").clientWidth,
+          document.getElementById("bg-3d").clientHeight
+        );
       },
       false
     );
@@ -216,7 +228,15 @@ export default {
 canvas {
   z-index: -1;
   width: 100%;
-  height: 60vh;
+  height: 100vh;
+  top: 0px;
+  left: 0px;
+  border: none;
+}
+#bg-3d {
+  z-index: -1;
+  width: 100%;
+  height: 75vh;
   top: 0px;
   left: 0px;
   border: none;

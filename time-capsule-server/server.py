@@ -19,7 +19,9 @@ CORS(app)
 """
 # BUILD CHATBOT RESPONSE
 """
-
+@app.route("/", methods=["GET"])
+def index():
+    return "Welcome to Time Capsule API"
 
 @app.route("/response", methods=["POST"])
 def reponse():
@@ -46,7 +48,7 @@ def generateTTS():
     data = re.sub(r" ", "+", data)
     input_text = re.sub(r"\!|\.|\,|\?|\"", "", data)
     response_sound_text = (
-        '<audio src="http://marytts-server.azurewebsites.net/process?INPUT_TYPE=TEXT&amp;OUTPUT_TYPE=AUDIO&amp;INPUT_TEXT='
+        '<audio src="http://localhost:59125/process?INPUT_TYPE=TEXT&amp;OUTPUT_TYPE=AUDIO&amp;INPUT_TEXT='
         + input_text
         + '&;AUDIO_OUT=WAVE_FILE&amp;LOCALE=en_US&amp;VOICE=new_voice&amp;AUDIO=WAVE_FILE" autoplay="" controls=""></audio>'
     )

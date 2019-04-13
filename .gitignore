@@ -1,0 +1,10 @@
+build
+log
+installed
+models
+__pycache__
+marytts-5.2
+tex
+*.obj
+*.mtl
+dist
