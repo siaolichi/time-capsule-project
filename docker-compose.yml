@@ -12,8 +12,8 @@ services:
         network_mode: 'service:client'
         build: ./time-capsule-server
         environment:
-            - APPID=27ed8363-23a9-4c7f-9be9-2e087b81f57a
-            - APPKEY=5aadbf6e015245c59e2dd38f06d33b41
+            - APPID=<APPID>
+            - APPKEY=<APPKEY>
     marytts:
         network_mode: 'service:client'
         build: ./marytts-server
