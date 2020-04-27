@@ -1,4 +1,4 @@
-# time-capsule
+# time-capsule-client
 
 ## Project setup
 ```
