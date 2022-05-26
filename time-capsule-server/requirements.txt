@@ -4,6 +4,6 @@ flask_cors
 Flask  
 gunicorn  
 psycopg2-binary
-tensorflow==1.8.0
+tensorflow==2.7.2
 gspread
 oauth2client
