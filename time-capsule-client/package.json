@@ -10,7 +10,7 @@
 	},
 	"dependencies": {
 		"axios": "^0.18.1",
-		"express": "^4.17.1",
+		"express": "^4.17.3",
 		"jquery": "^3.5.0",
 		"three": "^0.99.0",
 		"three-css2drender": "^1.0.0",
